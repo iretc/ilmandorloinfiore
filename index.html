@@ -1,15 +1,89 @@
-<!doctype html>
-<html>
-  <head>
-    <title>My first webpage</title>
-    <style>
-      body {margin: 20%; font-family: sans-serif; font-size: 1.5em;}
-      h1 {letter-spacing: 0.05em;}
-      p {color: grey;}
-    </style>
-  </head>
-  <body>
-    <h1>Il Mandorlo in Fiore</h1>
-    <p>I'm so smart</p>
-  </body>
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+
+	<title>Il Mandorlo in Fiore</title>
+	
+	<!-- Mobile viewport optimized: j.mp/bplateviewport -->
+ 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ 	<link href="stile.css" rel="stylesheet" />
+	
+
+</head>
+<body>
+
+<div class="container">
+
+	<div class="full-panel" id="home">  
+    
+    	<div id="copertina">
+    		Il MANDORLO IN FIORE
+    	</div>    
+    
+   	</div> 
+
+	<div class="bottom-bar animate">
+	    <div class="boxs">	
+		    
+		    <div class="box"> 
+		    	<a href="about.html">About <img class="in-box" src="assets/images/marte-in-3d.jpg"/> </a>
+		    	 
+		    </div>
+
+		    <div class="box"> 
+		    	<a href="camere.html">Camere <img class="in-box" src="assets/images/La-guerra-fredda_imagefullwide.jpg"/> </a>
+		       	 
+		    </div>
+
+		    <div class="box"> 
+		    	<a href="ancoranonso.html">Prezzi <img class="in-box" src="assets/images/goldstone.jpg"/> </a>
+		    	
+		    </div>
+		    <div class="box"> 
+		    	<a href="dintorni.html">Dintorni <img class="in-box" src="assets/images/Geodynamo_Between_Reversals.gif"/></a>
+		    	 
+		    </div>
+		    <div class="box"> 
+		    	<a href="contatti.html">Contatti <img class="in-box" src="assets/images/curiosity-rover-sky-crane.jpg"/></a>
+		    	 
+		    </div>
+	    </div>
+	</div>
+
+</div>
+
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+<script>
+$(function(){
+
+    var $bl    = $(".bottom-bar"),
+        $th    = $(".boxs"),
+        blW    = $bl.outerWidth(),
+        blSW   = $bl[0].scrollWidth,
+        wDiff  = (blSW/blW)-1,  // widths difference ratio
+        mPadd  = 60,  // Mousemove Padding
+        damp   = 20,  // Mousemove response softness
+        mX     = 0,   // Real mouse position
+        mX2    = 0,   // Modified mouse position
+        posX   = 0,
+        mmAA   = blW-(mPadd*2), // The mousemove available area
+        mmAAr  = (blW/mmAA);    // get available mousemove fidderence ratio
+
+    $bl.mousemove(function(e) {
+        mX = e.pageX - this.offsetLeft;
+        mX2 = Math.min( Math.max(0, mX-mPadd), mmAA ) * mmAAr;
+    });
+
+    setInterval(function(){
+        posX += (mX2 - posX) / damp; // zeno's paradox equation "catching delay"    
+        $th.css({marginLeft: -posX*wDiff });
+    }, 10);
+
+});
+</script>
+
+</body>
 </html>
+
